@@ -1,0 +1,23 @@
+{
+  "name": "example",
+  "version": "0.0.1",
+  "description": "",
+  "main": "./src/index.ts",
+  "scripts": {
+    "build": "hooks-cli compile-c contracts build",
+    "test:integration": "jest --config=jest.config.integration.js --runInBand"
+  },
+  "author": {
+    "name": "Denis Angell",
+    "url": "https://github.com/dangell7"
+  },
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "@transia/craft-toolkit-ts": "/Users/darkmatter/projects/ledger-works/craft-toolkit-ts"
+  },
+  "devDependencies": {
+    "@tsconfig/node16": "^16.1.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6"
+  }
+}

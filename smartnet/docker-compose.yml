@@ -1,0 +1,33 @@
+networks:
+  standalone-network:
+    driver: bridge
+services:
+  explorer:
+    container_name: explorer
+    environment:
+    - PORT=4000
+    - VUE_APP_WSS_ENDPOINT=ws://0.0.0.0:6006
+    image: transia/explorer:latest
+    networks:
+    - standalone-network
+    ports:
+    - 4000:4000
+  smartnet:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: smartnet
+    networks:
+    - standalone-network
+    platform: linux/x86_64
+    ports:
+    - 5007:5007
+    - 5005:5005
+    - 6008:6008
+    - 6006:6006
+    - 51235:51235
+    volumes:
+    - ${PWD}/smartnet/config:/etc/opt/ripple
+    - ${PWD}/smartnet/log:/opt/ripple/log
+    - ${PWD}/smartnet/lib:/opt/ripple/lib
+version: '3.9'
