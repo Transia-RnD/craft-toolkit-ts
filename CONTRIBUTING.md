@@ -2,10 +2,6 @@
 
 ## Build
 
-`cargo build --target wasm32v1-none --release`
-`cargo build --target wasm32-unknown-unknown --release`
-
-`cargo build --manifest-path contracts/base/Cargo.toml --target wasm32-unknown-unknown --release --target-dir ./build/base`
 `cargo build --manifest-path contracts/base/Cargo.toml --target wasm32v1-none --release --target-dir ./build/base`
 
 ## Run
