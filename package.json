@@ -22,7 +22,7 @@
   "dependencies": {
     "@transia/xrpl": "4.4.4-alpha.0",
     "crypto-js": "^4.1.1",
-    "dotenv": "^16.4.5",
+    "dotenv": "^17.2.3",
     "lodash": "^4.17.21",
     "winston": "^3.10.0"
   },
