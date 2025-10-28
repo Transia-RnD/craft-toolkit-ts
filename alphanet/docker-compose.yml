@@ -1,0 +1,31 @@
+networks:
+  standalone-network:
+    driver: bridge
+services:
+  explorer:
+    container_name: explorer
+    environment:
+    - PORT=4000
+    - VUE_APP_WSS_ENDPOINT=ws://0.0.0.0:6006
+    image: transia/explorer:latest
+    networks:
+    - standalone-network
+    ports:
+    - 4000:4000
+  alphanet:
+    image: transia/alphanet:latest
+    container_name: alphanet
+    networks:
+    - standalone-network
+    platform: linux/x86_64
+    ports:
+    - 5007:5007
+    - 5005:5005
+    - 6008:6008
+    - 6006:6006
+    - 51235:51235
+    volumes:
+    - ${PWD}/alphanet/config:/etc/opt/ripple
+    - ${PWD}/alphanet/log:/opt/ripple/log
+    - ${PWD}/alphanet/lib:/opt/ripple/lib
+version: '3.9'

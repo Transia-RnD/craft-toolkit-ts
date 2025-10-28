@@ -117,7 +117,7 @@ describe('base', () => {
       ComputationAllowance: 1000000,
       FunctionName: convertStringToHex('base'),
       Parameters: [parameter1.toXrpl(), parameter2.toXrpl()],
-      Fee: '5000',
+      Fee: '200000',
     }
     console.log(JSON.stringify(builtTx, null, 2))
 

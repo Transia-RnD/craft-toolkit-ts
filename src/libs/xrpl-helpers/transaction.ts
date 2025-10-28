@@ -155,7 +155,11 @@ export async function submitTransaction({
 }): Promise<SubmitResponse> {
   let response: SubmitResponse
   try {
+    console.log(transaction)
+
     const preparedTx = await client.autofill(transaction)
+
+    console.log(preparedTx)
 
     response = await client.submit(preparedTx, { wallet })
 

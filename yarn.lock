@@ -731,7 +731,7 @@
     "@transia/isomorphic" "^1.0.3-alpha.1"
     "@transia/ripple-keypairs" "^2.0.2-alpha.1"
 
-"@transia/xrpl@^4.4.4-alpha.1":
+"@transia/xrpl@^4.4.4-alpha.0":
   version "4.4.4-alpha.1"
   resolved "https://registry.yarnpkg.com/@transia/xrpl/-/xrpl-4.4.4-alpha.1.tgz#b073f491a62dc60591164dfe4964de775d62b107"
   integrity sha512-6VoGA/gvKuLIuhsKCMDhsiPkO+e11qx/0EOdH3FqoECE5qu/Rvua4aGvaffwTsvjZZ5pOAdy6HIhR89Iq4b/RQ==
