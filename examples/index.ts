@@ -6,7 +6,7 @@ import {
   convertStringToHex,
   Wallet,
   xrpToDrops,
-} from 'xrpl'
+} from '@transia/xrpl'
 import {
   createContract,
   CreateContractParams,
@@ -17,7 +17,6 @@ import {
 import {
   iInstanceParameter,
   iParameterFlag,
-  iParameterName,
   iParameterType,
   iInstanceParameterValue,
   iParameterValue,
@@ -35,13 +34,12 @@ class ContractManager {
   private contractId: string | null = null
   private contractAccount: string | null = null
 
-  constructor(aliceSeed: string, bobSeed: string) {
-    this.client = new Client('wss://batch.nerdnest.xyz')
-    this.aliceWallet = Wallet.fromSeed(aliceSeed)
-    this.bobWallet = Wallet.fromSeed(bobSeed)
-    this.contractId =
-      '83C6A0C38D2CFCC192E98CAA35A0DEF986032E51FB43ED1DBF171CAAA27DBF79'
-    this.contractAccount = 'rabACtskti2GHB4P9zjWRDcmMc3wZjvmYg'
+  constructor(alice: Wallet, bob: Wallet) {
+    this.client = new Client('wss://alphanet.nerdnest.xyz')
+    this.aliceWallet = alice
+    this.bobWallet = bob
+    this.contractId = ''
+    this.contractAccount = ''
   }
 
   async connect() {
@@ -50,6 +48,29 @@ class ContractManager {
 
   async disconnect() {
     await this.client.disconnect()
+  }
+
+  async fund() {
+    const aliceResponse = await this.client.fundWallet(
+      new Wallet('', '', {
+        masterAddress: this.aliceWallet.classicAddress,
+      }),
+      {
+        faucetHost: 'alphanet.faucet.nerdnest.xyz',
+        faucetPath: '/accounts',
+      }
+    )
+    console.log('Fund response:', aliceResponse)
+    const bobResponse = await this.client.fundWallet(
+      new Wallet('', '', {
+        masterAddress: this.bobWallet.classicAddress,
+      }),
+      {
+        faucetHost: 'alphanet.faucet.nerdnest.xyz',
+        faucetPath: '/accounts',
+      }
+    )
+    console.log('Fund response:', bobResponse)
   }
 
   async getContraactSle(): Promise<any> {
@@ -76,7 +97,6 @@ class ContractManager {
 
     const instanceParam1 = new iInstanceParameter(
       new iParameterFlag(65536),
-      new iParameterName('616D6F756E74', true),
       new iParameterType('AMOUNT')
     )
 
@@ -88,7 +108,6 @@ class ContractManager {
 
     const functionParam1 = new iFunctionParameter(
       new iParameterFlag(0),
-      new iParameterName('uint8'),
       new iParameterType('UINT8')
     )
 
@@ -126,6 +145,7 @@ class ContractManager {
     }
 
     const parameter1 = new iParameter(
+      new iParameterFlag(0),
       new iParameterType('UINT8'),
       new iParameterValue(1)
     )
@@ -158,11 +178,11 @@ class ContractManager {
 }
 
 async function main() {
-  const manager = new ContractManager(
-    'sEdSScfGpPRUnEBcUjR2aFdcnkhDhx8',
-    'sEdVZZwXj3Y4f2X7PVK2x1dNQBz9N53'
-  )
+  const aliceWallet = Wallet.fromSeed('sEdSScfGpPRUnEBcUjR2aFdcnkhDhx8')
+  const bobWallet = Wallet.fromSeed('sEdVZZwXj3Y4f2X7PVK2x1dNQBz9N53')
+  const manager = new ContractManager(aliceWallet, bobWallet)
   await manager.connect()
+  await manager.fund()
   await manager.createContract()
   await manager.callContract()
   await manager.disconnect()

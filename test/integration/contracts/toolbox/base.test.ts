@@ -22,7 +22,6 @@ import {
 import {
   iInstanceParameter,
   iParameterFlag,
-  iParameterName,
   iParameterType,
   iInstanceParameterValue,
   iParameterValue,
@@ -44,7 +43,6 @@ describe('base', () => {
 
     const instanceParam1 = new iInstanceParameter(
       new iParameterFlag(65536),
-      new iParameterName('616D6F756E74', true),
       new iParameterType('AMOUNT')
     )
 
@@ -56,13 +54,11 @@ describe('base', () => {
 
     const functionParam1 = new iFunctionParameter(
       new iParameterFlag(0),
-      new iParameterName('account'),
       new iParameterType('ACCOUNT')
     )
 
     const functionParam2 = new iFunctionParameter(
       new iParameterFlag(0),
-      new iParameterName('amount'),
       new iParameterType('AMOUNT')
     )
 
@@ -114,7 +110,7 @@ describe('base', () => {
       TransactionType: 'ContractCall',
       Account: aliceWallet.classicAddress,
       ContractAccount: contractAccount,
-      ComputationAllowance: 1000000,
+      ComputationAllowance: 0,
       FunctionName: convertStringToHex('base'),
       Parameters: [parameter1.toXrpl(), parameter2.toXrpl()],
       Fee: '200000',

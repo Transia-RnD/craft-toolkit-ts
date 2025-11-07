@@ -13,7 +13,7 @@
   },
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@transia/craft-toolkit-ts": "/Users/darkmatter/projects/ledger-works/craft-toolkit-ts"
+    "@transia/craft-toolkit-ts": "^1.0.0-beta.7"
   },
   "devDependencies": {
     "@tsconfig/node16": "^16.1.0",

@@ -1,6 +1,6 @@
 {
   "name": "@transia/craft-toolkit-ts",
-  "version": "1.0.0-beta.6",
+  "version": "1.0.0-beta.7",
   "description": "A toolkit for interacting with smart contracts on the XRPL Ledger.",
   "main": "dist/npm/src/index.js",
   "files": [
@@ -21,7 +21,7 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@transia/binary-models": "^1.1.0",
-    "@transia/xrpl": "^4.4.4-alpha.0",
+    "@transia/xrpl": "^4.4.5-alpha.0",
     "crypto-js": "^4.1.1",
     "dotenv": "^16.4.5",
     "lodash": "^4.17.21",
