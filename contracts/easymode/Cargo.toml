@@ -26,4 +26,4 @@ overflow-checks = false # Disable overflow checks (use cautiously)
 panic = "unwind"
 
 [dependencies]
-xrpl-wasm-std = { path = "../../../xrpl-wasm-std" }
+xrpl-wasm-std = { git = "https://github.com/Transia-RnD/xrpl-wasm-std.git", branch = "main", package = "xrpl-wasm-std" }
