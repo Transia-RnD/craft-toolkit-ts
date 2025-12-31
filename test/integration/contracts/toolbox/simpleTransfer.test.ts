@@ -27,9 +27,11 @@ import {
   iParameterValue,
   iFunction,
   iFunctionName,
+  iFunctionParameter,
+  iParameter,
 } from '../../../../dist/npm/src/models'
 
-describe('base', () => {
+describe('simpleTransfer', () => {
   let testContext: XrplIntegrationTestContext
   let contractAccount: string
 
@@ -47,12 +49,25 @@ describe('base', () => {
       new iParameterValue(xrpToDrops('2000'))
     )
 
-    const function1 = new iFunction(new iFunctionName('base'), [])
+    const functionParam1 = new iFunctionParameter(
+      new iParameterFlag(0),
+      new iParameterType('ACCOUNT')
+    )
+
+    const functionParam2 = new iFunctionParameter(
+      new iParameterFlag(0),
+      new iParameterType('AMOUNT')
+    )
+
+    const function1 = new iFunction(new iFunctionName('simple_transfer'), [
+      functionParam1,
+      functionParam2,
+    ])
 
     const builtTxn = {
       TransactionType: 'ContractCreate',
       Account: testContext.alice.classicAddress,
-      ContractCode: readWasmFromContract('base'),
+      ContractCode: readWasmFromContract('simple_transfer'),
       Flags: ContractFlags.tfImmutable,
       InstanceParameters: [instanceParam1.toXrpl()],
       InstanceParameterValues: [instanceParamValue1.toXrpl()],
@@ -76,12 +91,25 @@ describe('base', () => {
     console.log(`Contract Account: ${contractAccount}`)
     const aliceWallet = testContext.alice
 
+    const parameter1 = new iParameter(
+      new iParameterFlag(0),
+      new iParameterType('ACCOUNT'),
+      new iParameterValue(aliceWallet.classicAddress)
+    )
+
+    const parameter2 = new iParameter(
+      new iParameterFlag(0),
+      new iParameterType('AMOUNT'),
+      new iParameterValue(xrpToDrops('1'))
+    )
+
     const builtTx: ContractCall = {
       TransactionType: 'ContractCall',
       Account: aliceWallet.classicAddress,
       ContractAccount: contractAccount,
       ComputationAllowance: 1000000,
-      FunctionName: convertStringToHex('base'),
+      FunctionName: convertStringToHex('simple_transfer'),
+      Parameters: [parameter1.toXrpl(), parameter2.toXrpl()],
       Fee: '200000',
     }
     console.log(JSON.stringify(builtTx, null, 2))

@@ -1,13 +1,9 @@
 import fs from 'fs'
-import path from 'path'
+// import path from 'path'
 
 export function readWasmFromContract(contractName: string): string {
-  const buildPath = process.cwd() + '/' + 'build'
-  const projectPath = `/${contractName}/wasm32v1-none/release`
-  // const projectPath = `/${project}/wasm32-unknown-unknown/release`
-  return wasmToHex(
-    path.resolve(__dirname, `${buildPath}/${projectPath}/${contractName}.wasm`)
-  )
+  const projectPath = `contracts/${contractName}/target/wasm32v1-none/release/${contractName}.wasm`
+  return wasmToHex(projectPath)
 }
 
 export function readWasmFromPath(path: string): string {

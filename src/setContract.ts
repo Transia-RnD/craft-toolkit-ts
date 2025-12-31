@@ -29,18 +29,11 @@ export async function createContract({
     })
   | null
 > {
-  // appLogger.debug(`1. Transaction to submit (before autofill):`)
-  // appLogger.debug(JSON.stringify(tx, null, 2))
-  // appLogger.debug(`\n2. Submitting transaction...`)
-
   const txResponse = await appTransaction(client, tx, wallet, {
     hardFail: true,
     count: 2,
     delayMs: 1000,
   })
-
-  // Get Contract Address
-  console.log(JSON.stringify(txResponse.result.meta))
 
   // Loop through the AffectedNodes to find the CreatedNode LedgerEntryType == Contract then get the LedgerIndex (this is the ContractID).
   // Then find the CreatedNode with LedgerEntryType == AccountRoot and the ContractID on the AccountRoot, FinalFields.ContractID
@@ -60,11 +53,6 @@ export async function createContract({
       }
     }
   }
-
-  console.log('ContractID:', contractId)
-  console.log('AccountRoot.Account:', contractAccount)
-
-  // appLogger.debug(`\n3. SetHook Success...`)
   return {
     id: contractId,
     account: contractAccount,

@@ -72,13 +72,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2874a2af47a2325c2001a6e6fad9b16a53b802102b528163885171cf92b15976"
 
 [[package]]
-name = "parameters"
-version = "0.1.0"
-dependencies = [
- "xrpl-wasm-std",
-]
-
-[[package]]
 name = "proc-macro2"
 version = "1.0.103"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -105,6 +98,13 @@ dependencies = [
  "cfg-if",
  "cpufeatures",
  "digest",
+]
+
+[[package]]
+name = "simple_transfer"
+version = "0.1.0"
+dependencies = [
+ "xrpl-wasm-stdlib",
 ]
 
 [[package]]
@@ -153,8 +153,8 @@ checksum = "0b928f33d975fc6ad9f86c8f283853ad26bdd5b10b7f1542aa2fa15e2289105a"
 
 [[package]]
 name = "xrpl-address-macro"
-version = "0.1.0"
-source = "git+https://github.com/Transia-RnD/xrpl-wasm-std.git?branch=main#cb5831dd5d3b2e2d55c375fc13d994d129cb13f6"
+version = "0.7.1"
+source = "git+https://github.com/Transia-RnD/xrpl-wasm-std.git?branch=main#9171d5eadd404f66938eee1bfce8606632b667d6"
 dependencies = [
  "bs58",
  "quote",
@@ -163,9 +163,20 @@ dependencies = [
 ]
 
 [[package]]
-name = "xrpl-wasm-std"
-version = "0.5.1-devnet5"
-source = "git+https://github.com/Transia-RnD/xrpl-wasm-std.git?branch=main#cb5831dd5d3b2e2d55c375fc13d994d129cb13f6"
+name = "xrpl-parameter-macro"
+version = "1.0.0"
+source = "git+https://github.com/Transia-RnD/xrpl-wasm-std.git?branch=main#9171d5eadd404f66938eee1bfce8606632b667d6"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
+name = "xrpl-wasm-stdlib"
+version = "0.7.1"
+source = "git+https://github.com/Transia-RnD/xrpl-wasm-std.git?branch=main#9171d5eadd404f66938eee1bfce8606632b667d6"
 dependencies = [
  "xrpl-address-macro",
+ "xrpl-parameter-macro",
 ]

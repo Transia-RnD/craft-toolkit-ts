@@ -17,11 +17,15 @@ export class iFunction {
   }
 
   toXrpl(): XrplFunction {
-    return {
+    const f = {
       Function: {
         FunctionName: !this.name.isHex ? this.name.toHex() : this.name.value,
-        Parameters: this.parameters.map((p) => p.toXrpl()),
       },
-    } as XrplFunction
+    }
+    if (this.parameters && this.parameters.length > 0) {
+      // @ts-expect-error -- ignore
+      f.Function.Parameters = this.parameters.map((p) => p.toXrpl())
+    }
+    return f as XrplFunction
   }
 }

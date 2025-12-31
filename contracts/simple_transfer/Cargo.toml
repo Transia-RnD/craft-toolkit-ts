@@ -1,5 +1,5 @@
 [package]
-name = "parameters"
+name = "simple_transfer"
 version = "0.1.0"
 edition = "2024"
 description = ""
@@ -26,4 +26,5 @@ overflow-checks = false # Disable overflow checks (use cautiously)
 panic = "unwind"
 
 [dependencies]
-xrpl-wasm-std = { git = "https://github.com/Transia-RnD/xrpl-wasm-std.git", branch = "main", package = "xrpl-wasm-std" }
+xrpl-wasm-stdlib = { git = "https://github.com/Transia-RnD/xrpl-wasm-std.git", branch = "main", package = "xrpl-wasm-stdlib" }
+

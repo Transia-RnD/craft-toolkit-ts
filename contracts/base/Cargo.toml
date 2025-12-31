@@ -23,4 +23,4 @@ overflow-checks = false # Disable overflow checks (use cautiously)
 panic = "unwind"
 
 [dependencies]
-xrpl-wasm-std = { git = "https://github.com/Transia-RnD/craft.git", branch = "dangell/smart-contracts", package = "xrpl-wasm-std" }
+xrpl-wasm-stdlib = { git = "https://github.com/Transia-RnD/xrpl-wasm-std.git", branch = "main", package = "xrpl-wasm-stdlib" }
